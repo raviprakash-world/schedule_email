@@ -1,0 +1,19 @@
+{
+  "name": "schedule_email",
+  "version": "1.0.0",
+  "description": "schedule email using nodemailer",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "schedule_email"
+  },
+  "author": "Ravi Prakash",
+  "license": "ISC",
+  "dependencies": {
+    "node-cron": "^3.0.2",
+    "nodemailer": "^6.8.0"
+  }
+}
