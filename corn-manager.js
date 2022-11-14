@@ -5,15 +5,29 @@ const url_taskMap = {};
 
 module.exports.startScheduleJobs = startScheduleJobs;
 module.exports.startCronJobs = startCronjobs;
-module.exports.stopScheduleJobs = StopScheduleJobs;
+// module.exports.stopScheduleJobs = StopScheduleJobs;
 module.exports.stopCronjobs = stopCronjobs;
 
 // cron jobs
 
 async function startCronjobs(req, res) {
   //recurring timely
+  var second = 1;
+  var minute = 9;
+  var hour = 17;
+  var dayOfMonth = 14;
+  var month = 11;
+  // var year = "2022";
+  var dayOfWeek = 1;
+  // second = "*/" + second;
+  console.log("current time ", new Date());
+
+  // cron_schedule_string = ` * * * 14 11 *`;
+  cron_schedule_string = `${second} ${minute} ${hour} ${dayOfMonth} ${month} ${dayOfWeek}`;
+
+  console.log(cron_schedule_string);
   const task = cron.schedule(
-    "* * * * * * ",
+    cron_schedule_string,
     () => {
       console.log(new Date());
     },
@@ -51,10 +65,19 @@ async function stopCronjobs(req, res) {
 }
 async function startScheduleJobs(req, res) {
   //recurring once
-  const date = new Date(2022, 11, 11, 20, 34, 0);
-  console.log(date.toString());
+
+  var minute = 30;
+  var hour = 17;
+  var dayOfMonth = 14;
+  var month = 10;
+  var year = 2022;
+  console.log("current time ", new Date());
+  // second = "*/" + second;
+  const date = new Date(year, month, dayOfMonth, hour, minute, 0);
+
+  console.log(date);
   try {
-    const job = schedule.scheduleJob(` * * * * * *`, async function () {
+    const job = schedule.scheduleJob(date, async function () {
       console.log("once");
     });
     const idx = Object.keys(url_taskMap).length;
